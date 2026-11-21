@@ -57,9 +57,18 @@ export const UI = {
   unsubText: ["Stop getting emails about new posts?", "புதிய பதிவுகள் பற்றிய மின்னஞ்சல்களை நிறுத்த வேண்டுமா?"],
   unsubDone: ["You are unsubscribed. Sorry to see you go.", "சந்தா நிறுத்தப்பட்டது."],
   offline: ["You are offline. Check your connection and try again.", "நீங்கள் இணையம் இல்லாமல் உள்ளீர்கள். இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்."],
+  certTitle: ["Certificates", "சான்றிதழ்கள்"],
+  resumeLabel: ["Resume", "சுயவிவரம்"],
+  viewIt: ["View", "பார்க்க"],
+  downloadIt: ["Download", "பதிவிறக்கு"],
+  verifyIt: ["Verify", "சரிபார்"],
+  issuedBy: ["Issued by", "வழங்கியவர்"],
+  closeIt: ["Close", "மூடு"],
+  viewOnly: ["View only", "பார்வைக்கு மட்டும்"],
+  allItems: ["All", "அனைத்தும்"],
 } as const;
 
 // Tamil names for the dock links (used when a link has no Tamil name of its own)
 export const NAV_TA: Record<string, string> = {
-  "/": "முகப்பு", "/gallery": "படத்தொகுப்பு", "/moodboard": "மூட்-போர்டு", "/blog": "வலைப்பதிவு", "/about": "என்னைப் பற்றி", "/contact": "தொடர்பு",
+  "/": "முகப்பு", "/gallery": "படத்தொகுப்பு", "/moodboard": "மூட்-போர்டு", "/blog": "வலைப்பதிவு", "/about": "என்னைப் பற்றி", "/contact": "தொடர்பு", "/certificates": "சான்றிதழ்கள்",
 };

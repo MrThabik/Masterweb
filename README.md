@@ -100,3 +100,10 @@ Developer Space adapts to phone, tablet and laptop (side menu on laptops, Menu b
 - Picture upload: the editor tries a direct upload and, if that is refused, uploads through the server, which also creates the storage folder and makes it public. Also available: "Use the site's own preview image" and "Paste a picture link". Dashboard > Test image upload explains any problem.
 - Search and AI: Site Settings > "Apply recommended search settings" fills the names (Mr Thabik, Mr.Thabik, MrThabik, Thaseen Shabik, Thaseen Shabik N), title, description, keywords, About text and questions. New pages and files: /websites (every website listed), /llms.txt, /llms-full.txt, FAQ and ItemList structured data, more crawlers allowed in robots.txt.
 - Then: Google Search Console (add the new address, submit /sitemap.xml, Request indexing), Bing Webmaster Tools (import from Search Console, submit the sitemap), Developer Space > Site Settings > Notify search engines now. Link every portfolio website to the master website and back, and use the same name "Mr Thabik | Thaseen Shabik" on LinkedIn, GitHub, Instagram, YouTube and X, with the master website as the link.
+
+## Round 6: certificates and resume vault
+- Run the Update 9 SQL (creates the certificates table). Public page: /certificates. Admin: Developer Space > Certificates & Resume.
+- Certificates: title, issuer, date, category, description, verify link (https), file (picture or PDF), Hide, Downloadable, drag order. View-only files show a watermark and no download button (a screenshot can never be fully blocked).
+- Resume: one PDF at the top of the page, with an option to allow download.
+- Search: certificates are published as structured data (EducationalOccupationalCredential), /certificates is in the sitemap and llms.txt.
+- Backup & Restore now includes certificates. Add the page to the dock in Design & Layout: Certificates | /certificates.

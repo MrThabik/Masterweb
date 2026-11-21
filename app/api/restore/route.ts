@@ -3,7 +3,7 @@ import { json, svc } from "@/lib/formGuard";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
-const ALLOWED = ["settings", "sites", "artworks", "moods", "posts", "subscribers", "messages"];
+const ALLOWED = ["settings", "sites", "artworks", "moods", "posts", "certificates", "subscribers", "messages"];
 
 // Replaces the chosen tables with the rows from a backup file. The editor downloads a safety backup first.
 export async function POST(req: Request) {

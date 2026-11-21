@@ -27,6 +27,7 @@ export async function GET() {
     `- [Mood-board](${base}/moodboard)`,
     `- [Blog](${base}/blog): notes in Tamil and English`,
     `- [Websites](${base}/websites): every website by ${s.owner_name}`,
+    `- [Certificates](${base}/certificates): certificates and resume of ${s.owner_name}`,
     `- [Contact](${base}/contact)`,
     ...(posts?.length ? ["", "## Blog posts", ...posts.map((p) => `- [${p.title}](${base}/blog/${p.slug}) (${p.lang})`)] : []),
     "",

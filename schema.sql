@@ -250,3 +250,25 @@ alter table posts add column if not exists notified_at timestamptz;
 drop policy if exists "public read posts" on posts;
 create policy "public read posts" on posts for select using ((published and (publish_at is null or publish_at <= now())) or is_master());
 notify pgrst, 'reload schema';
+
+-- ===== Update 9: certificates vault =====
+create table if not exists certificates (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  issuer text,
+  issued_on date,
+  category text,
+  description text,
+  credential_url text,
+  file_path text,
+  file_type text,
+  hidden boolean not null default false,
+  downloadable boolean not null default false,
+  featured boolean not null default false,
+  sort int default 0,
+  created_at timestamptz default now()
+);
+alter table certificates enable row level security;
+create policy "public read certificates" on certificates for select using (not hidden or is_master());
+create policy "master write certificates" on certificates for all using (is_master()) with check (is_master());
+notify pgrst, 'reload schema';

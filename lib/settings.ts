@@ -28,7 +28,7 @@ export type Settings = {
   blog_title: string; blog_intro: string; blog_layout: "cards" | "list" | "magazine"; blog_columns: number; blog_show_meta: boolean; blog_show_excerpt: boolean;
   post_template: "classic" | "centered" | "editorial"; post_size: number; post_width: "narrow" | "normal" | "wide";
   post_show_share: boolean; post_show_subscribe: boolean; post_show_time: boolean;
-  about_faq: string; about_blocks: AboutBlock[]; about_layout: "simple" | "card" | "columns"; page_seo: PageSeo;
+  about_faq: string; cert_title: string; cert_intro: string; cert_watermark: string; cert_layout: "grid" | "list"; resume_enabled: boolean; resume_title: string; resume_path: string; resume_download: boolean; about_blocks: AboutBlock[]; about_layout: "simple" | "card" | "columns"; page_seo: PageSeo;
   ga_id: string; bing_verification: string; robots_index: boolean;
   theme_default: "dark" | "light" | "device"; analytics_enabled: boolean; show_cookie_notice: boolean; privacy_contact: string; privacy_extra: string;
   custom_css: string;
@@ -55,7 +55,7 @@ const ENUMS = {
   intro_style: ["fade", "rise", "zoom", "blur", "typewriter"], gallery_layout: ["slider", "masonry"], gallery_transition: ["fade", "slide", "zoom", "none"],
   gallery_whole_bg: ["blur", "black"], mood_layout: ["masonry", "grid", "strip"], mood_hover: ["zoom", "lift", "none"], mood_caption: ["hover", "always", "hidden"],
   mood_frame: ["none", "border", "polaroid"], blog_layout: ["cards", "list", "magazine"], post_template: ["classic", "centered", "editorial"],
-  post_width: ["narrow", "normal", "wide"], about_layout: ["simple", "card", "columns"], theme_default: ["dark", "light", "device"],
+  post_width: ["narrow", "normal", "wide"], about_layout: ["simple", "card", "columns"], theme_default: ["dark", "light", "device"], cert_layout: ["grid", "list"],
 } as const;
 
 export const DEFAULTS: Settings = {
@@ -93,6 +93,7 @@ export const DEFAULTS: Settings = {
   blog_title: "THASEEN NOTES", blog_intro: "", blog_layout: "cards", blog_columns: 1, blog_show_meta: true, blog_show_excerpt: true,
   post_template: "classic", post_size: 17, post_width: "normal", post_show_share: true, post_show_subscribe: true, post_show_time: true,
   about_faq: "Who is Mr Thabik?|Mr Thabik is the online name of Thaseen Shabik N, an Electrical & Electronics engineer, artist and creator from Tamil Nadu, India.\nWho is Thaseen Shabik?|Thaseen Shabik N, also known as Mr Thabik, is an engineer with experience in FANUC robot programming and VMC machining, and an artist and creator.\nWhere can I see Mr Thabik's websites?|All of Mr Thabik's websites are listed on this master website, on the Websites page.",
+  cert_title: "Certificates", cert_intro: "", cert_watermark: "© THASEEN SHABIK · VIEW ONLY", cert_layout: "grid", resume_enabled: true, resume_title: "Resume", resume_path: "", resume_download: false,
   about_blocks: [], about_layout: "simple", page_seo: {},
   ga_id: "", bing_verification: "", robots_index: true,
   theme_default: "dark", analytics_enabled: true, show_cookie_notice: true, privacy_contact: "", privacy_extra: "",
@@ -127,7 +128,7 @@ export const TEMPLATES: Record<string, { note: string; v: Partial<Settings> }> =
 export const DESIGN_KEYS = Object.keys(DESIGN_BASE) as (keyof Settings)[];
 
 // ----- helpers -----
-const ALLOW_EMPTY = new Set(["google_verification", "intro_line1", "intro_title", "intro_tagline", "watermark_text", "custom_css", "tagline_ta", "hero_intro_ta", "footer_text_ta", "about_title_ta", "about_body_ta", "contact_intro", "contact_intro_ta", "whatsapp_number", "whatsapp_message", "home_text_title", "home_text_body", "mood_intro", "blog_intro", "ga_id", "bing_verification", "gallery_albums", "privacy_contact", "privacy_extra", "about_faq"]);
+const ALLOW_EMPTY = new Set(["google_verification", "intro_line1", "intro_title", "intro_tagline", "watermark_text", "custom_css", "tagline_ta", "hero_intro_ta", "footer_text_ta", "about_title_ta", "about_body_ta", "contact_intro", "contact_intro_ta", "whatsapp_number", "whatsapp_message", "home_text_title", "home_text_body", "mood_intro", "blog_intro", "ga_id", "bing_verification", "gallery_albums", "privacy_contact", "privacy_extra", "about_faq", "cert_intro", "cert_watermark", "resume_path"]);
 const num = (v: unknown, min: number, max: number, d: number) => { const n = Number(v); return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : d; };
 const pick = <T extends string>(v: unknown, opts: readonly T[], d: T): T => (opts.includes(v as T) ? (v as T) : d);
 export const safeColor = (c: unknown, fallback: string) => (typeof c === "string" && /^#[0-9a-fA-F]{6}$/.test(c) ? c : fallback);
@@ -213,6 +214,7 @@ function sanitize(s: Settings): Settings {
     ga_id: /^G-[A-Za-z0-9]{6,14}$/.test(String(s.ga_id ?? "").trim()) ? String(s.ga_id).trim() : "",
     bing_verification: String(s.bing_verification ?? "").replace(/[^A-Za-z0-9]/g, "").slice(0, 80),
     about_blocks: cleanBlocks(s.about_blocks), page_seo: cleanSeo(s.page_seo), about_faq: String(s.about_faq ?? "").slice(0, 3000),
+    resume_enabled: s.resume_enabled !== false, resume_download: s.resume_download === true, resume_path: String(s.resume_path ?? "").replace(/[^\w\-./]/g, "_").slice(0, 200),
   };
 }
 

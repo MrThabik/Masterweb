@@ -14,8 +14,8 @@ export async function POST(req: Request) {
   const path = String(fd.get("path") ?? "").replace(/[^\w\-./]/g, "_").replace(/\.\.+/g, ".");
   const file = fd.get("file");
   if (!path || path.startsWith("/") || !(file instanceof File)) return json({ error: "Bad upload." }, 400);
-  if (!/^image\//.test(file.type)) return json({ error: "Only pictures can be uploaded." }, 400);
-  if (file.size > 4_000_000) return json({ error: "The picture is over 4 MB. Choose a smaller one." }, 413);
+  if (!/^image\//.test(file.type) && file.type !== "application/pdf") return json({ error: "Only pictures and PDF files can be uploaded." }, 400);
+  if (file.size > 4_000_000) return json({ error: "The file is over 4 MB. Choose a smaller one." }, 413);
 
   const b = await svc.storage.getBucket(bucket);
   if (b.error) await svc.storage.createBucket(bucket, { public: true });

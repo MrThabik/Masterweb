@@ -19,7 +19,7 @@ async function all(table: string) {
 export async function GET(req: Request) {
   if (!(await isMaster(req))) return json({ error: "Forbidden" }, 403);
   const u = new URL(req.url);
-  const tables = ["settings", "sites", "artworks", "moods", "posts", ...(u.searchParams.get("subs") ? ["subscribers"] : []), ...(u.searchParams.get("msgs") ? ["messages"] : [])];
+  const tables = ["settings", "sites", "artworks", "moods", "posts", "certificates", ...(u.searchParams.get("subs") ? ["subscribers"] : []), ...(u.searchParams.get("msgs") ? ["messages"] : [])];
   try {
     const out: Record<string, unknown[]> = {};
     for (const t of tables) out[t] = await all(t);

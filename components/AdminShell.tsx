@@ -15,6 +15,7 @@ const NAV: [string, string][] = [
   ["/developer/gallery", "Gallery"],
   ["/developer/moodboard", "Mood-board"],
   ["/developer/blog", "Blog"],
+  ["/developer/certificates", "Certificates & Resume"],
   ["/developer/messages", "Messages"],
   ["/developer/subscribers", "Subscribers"],
   ["/developer/history", "History"],

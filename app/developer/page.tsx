@@ -77,6 +77,7 @@ function Dashboard() {
         <Link href="/developer/design" className={act}>Edit the design</Link>
         <Link href="/developer/settings" className={act}>Site settings and SEO</Link>
         <Link href="/developer/history" className={act}>Restore an earlier version</Link>
+        <Link href="/developer/certificates" className={act}>Certificates &amp; resume</Link>
         <Link href="/developer/stats" className={act}>Visitor statistics</Link>
         <Link href="/developer/backup" className={act}>Backup &amp; restore</Link>
         <button className={act} onClick={refresh}>Refresh the public website now</button>
